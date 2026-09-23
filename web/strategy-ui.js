@@ -9,23 +9,35 @@ const add = (parent, tag, text, className='') => {
   return node;
 };
 
-export async function loadPersonas(api) {
+export async function loadPersonas(api, onSelect) {
+  const select = $('#persona');
+  // Bind immediately, even when the catalog API is slow or unavailable.
+  let personas = [...select.options].map(option => ({
+    id: option.value,
+    name: option.textContent.split(' · ')[0],
+    style: option.textContent.split(' · ')[1],
+    description: option.dataset.description || '',
+  }));
+  const describe = () => {
+    const persona = personas.find(p => p.id === select.value);
+    if (!persona) return;
+    $('#persona-description').textContent = persona.description;
+    onSelect(persona);
+  };
+  select.addEventListener('change', describe);
+  describe();
   try {
-    const personas = await api('/api/personas');
-    const select = $('#persona');
+    const catalog = await api('/api/personas');
+    if (!Array.isArray(catalog) || !catalog.length) return;
+    // Do not reset a choice made while this request was in flight.
+    const selected = select.value;
+    personas = catalog;
     select.replaceChildren();
-    for (const p of personas) {
-      const option = new Option(`${p.name} · ${p.style}`, p.id);
-      select.add(option);
-    }
-    select.value = 'reader';
-    const describe = () => {
-      $('#persona-description').textContent = personas.find(p=>p.id===select.value)?.description || '';
-    };
-    select.onchange = describe;
+    for (const p of personas) select.add(new Option(`${p.name} · ${p.style}`, p.id));
+    select.value = personas.some(p => p.id === selected) ? selected : personas[0].id;
     describe();
   } catch {
-    $('#persona-description').textContent = '连接恢复后即可挑战；每位馆主各有所长。';
+    // The built-in catalog still provides immediate preview and selection.
   }
 }
 

@@ -25,7 +25,21 @@ function render(){
  $('#control-title').textContent=state.result?'胜负已分，且待再会。':busy?'两虫相试，稍候片刻…':'观其势，择一招。';
  enemyColor=state.enemy.breed.color;
  renderDecision(state);
+ $('#persona-feedback').textContent=state.result?`本局与${state.persona.name}交锋结束，可另邀馆主再战。`:`正在与${state.persona.name}交锋 · 本局打法已锁定`;
  buttons();
+}
+function previewPersona(persona) {
+ if (busy || (session && !state?.result)) return;
+ const next = !!state?.result;
+ $('#persona-feedback').textContent = `${next?'下场':'本场'}已邀 ${persona.name} · 开盆后按此打法对战`;
+ $('#control-title').textContent = `已邀${persona.name}，请${next?'再':'开'}盆。`;
+ $('#scene-message').textContent = `${persona.name}已应邀：${persona.style}。${next?'点击「再斗一场」迎战。':'点击「开盆斗虫」开始。'}`;
+ if (!next) {
+  $('#rival-title').textContent = persona.name;
+  $('#stage-label').textContent = `候场 · ${persona.name}应邀`;
+  $('#decision-plan').textContent = `${persona.name} · ${persona.style}`;
+  $('#decision-reason').textContent = persona.description;
+ }
 }
 function showError(error){$('#scene-message').textContent=error.name==='AbortError'?'等候超时，请刷新后重新开局。':`未能完成：${error.message}`;}
 $('#start').onclick=async()=>{busy=true;buttons();try{const data=await api('/api/start',{breed:selected,persona:$('#persona').value});session=data.session;state=data;decisionHistory=[];resetDecision();$('#result').hidden=true;$('#log').innerHTML='<div class="log-entry"><small>良虫入盆</small><h3>两雄相会，各显其能</h3><p>试探一招，看看对手的虚实。</p></div>';$('#scene-message').textContent='良虫入盆，请选择你的第一招。';roster();}catch(e){showError(e)}finally{busy=false;if(state)render();else buttons()}};
@@ -51,4 +65,4 @@ async function modelStatus(){try{const model=await api('/api/status');$('#engine
 const canvas=$('#arena-canvas'),ctx=canvas.getContext('2d');let width=0,height=0;
 new ResizeObserver(()=>{const rect=canvas.getBoundingClientRect();width=rect.width;height=rect.height;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}).observe(canvas);
 function frame(time){if(width&&height&&!document.hidden)drawBowl(ctx,width,height,time/1000,{player:breeds[selected].color,enemy:enemyColor,animation,result:state?.result,reduced});requestAnimationFrame(frame)}
-roster();loadPersonas(api);updateRecordSummary();modelStatus();requestAnimationFrame(frame);
+roster();loadPersonas(api,previewPersona);updateRecordSummary();modelStatus();requestAnimationFrame(frame);
