@@ -1,0 +1,83 @@
+{
+  "note": "Four scripted opponents, 40 seeds each. No Laya inference; validates the strategic fallback only.",
+  "results": [
+    {
+      "persona": "bold",
+      "policy": "v1-random",
+      "games": 160,
+      "enemy_wins": 98,
+      "draws": 3,
+      "enemy_losses": 59,
+      "moves": {
+        "attack": 901,
+        "guard": 604,
+        "provoke": 531
+      }
+    },
+    {
+      "persona": "bold",
+      "policy": "adaptive-rules",
+      "games": 160,
+      "enemy_wins": 130,
+      "draws": 17,
+      "enemy_losses": 13,
+      "moves": {
+        "attack": 1221,
+        "guard": 483,
+        "provoke": 0
+      }
+    },
+    {
+      "persona": "patient",
+      "policy": "v1-random",
+      "games": 160,
+      "enemy_wins": 98,
+      "draws": 3,
+      "enemy_losses": 59,
+      "moves": {
+        "attack": 901,
+        "guard": 604,
+        "provoke": 531
+      }
+    },
+    {
+      "persona": "patient",
+      "policy": "adaptive-rules",
+      "games": 160,
+      "enemy_wins": 111,
+      "draws": 17,
+      "enemy_losses": 32,
+      "moves": {
+        "attack": 1038,
+        "guard": 982,
+        "provoke": 82
+      }
+    },
+    {
+      "persona": "reader",
+      "policy": "v1-random",
+      "games": 160,
+      "enemy_wins": 98,
+      "draws": 3,
+      "enemy_losses": 59,
+      "moves": {
+        "attack": 901,
+        "guard": 604,
+        "provoke": 531
+      }
+    },
+    {
+      "persona": "reader",
+      "policy": "adaptive-rules",
+      "games": 160,
+      "enemy_wins": 118,
+      "draws": 9,
+      "enemy_losses": 33,
+      "moves": {
+        "attack": 1159,
+        "guard": 533,
+        "provoke": 119
+      }
+    }
+  ]
+}

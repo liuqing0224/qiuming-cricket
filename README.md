@@ -23,11 +23,12 @@ uv pip install --python .venv/bin/python -r requirements-lock.txt -e ./vendor/la
 
 ## 玩法
 
-1. 在青背将军（均衡）、紫衣侯（强攻）、金翅郎（灵巧）中选择一只，开盆。
+1. 选择蛐蛐和馆主：急先锋（抢攻）、守拙翁（蓄力）、听风客（察势），然后开盆。
 2. 每回合选择强攻 / 固守 / 挑逗，快捷键分别为 1 / 2 / 3。
 3. 强攻消耗 18 体力，对挑逗追加伤害；固守恢复 24 体力并抵挡强攻；挑逗提升 19 斗志并压制固守。
 4. 耐力为零则退败，双方同时归零为和。20 回合后以 `耐力 + 斗志 × 0.2` 判胜。
-5. 结束后可换虫、再战；最近 50 场战绩保存在浏览器 localStorage。
+5. 每回合下方揭晓对手的观察、预测与应对；「本局复盘」可展开模型原始判断、无模型参考选择和各招收益。
+6. 结束后可换虫、换馆主再战；最近 50 场战绩保存在浏览器 localStorage。
 
 虫鸣默认关闭，由用户点击开启。支持移动端、键盘、减少动态效果偏好。文化氛围为创作性表达，非特定朝代的史实复原；不用真虫，不含真钱下注。
 
@@ -38,19 +39,23 @@ uv pip install --python .venv/bin/python -r requirements-lock.txt -e ./vendor/la
 ```python
 agent = laya.load('convaiinnovations/laya', subfolder='multilingual', device='cpu')
 result = agent.predict(pre_turn_state, QUESTIONS)
-action = result['answers']['move']['choice']
+forecast = result['answers']['forecast']['probabilities']
+plan = result['answers']['plan']['choice']
+# strategy.py 融合历史与上述输出，比较合法招式收益后决定对手动作。
 ```
 
 - 服务启动后后台加载模型，页面显示加载或连接状态。
 - **只传入出招前状态和已结束回合，绝不传玩家本回合选择。**
-- 三选一的 `choice` 输出用于实际对手动作；无体力时由游戏规则限制强攻。
-- 模型未加载、推理失败或超过 12 秒时明确切换规则对手，逐回合实录标记来源。超时后不继续堆积推理队列。
+- 两个 `choice` 输出分别预测玩家招式、选择战术目标，结合历史记忆与局面推演决定实际动作；无体力时禁止强攻。
+- 模型未加载、推理失败或超过 12 秒时明确切换有历史记忆的规则对手，逐回合实录标记来源。超时后不继续堆积推理队列。
 - 使用原模型，尚未用斗蟋数据微调；不宣称其具备最优博弈策略或已校准的游戏胜率。
 - `LAYA_DISABLE=1` 可仅用规则对手；`LAYA_DEVICE=mps` 可尝试 Apple GPU，默认 CPU 为验收配置。
 
 ## 文件与测试
 
 - `game.py`：服务端规则与同时结算。
+- `strategy.py`：对手性格、历史记忆、模型判断融合和招式收益评估。
+- [策略说明与验证边界](docs/STRATEGY.md)：决策原理、可复现诊断与模型贡献的诚实边界。
 - `server.py`：FastAPI、会话、Laya 推理与降级。
 - `web/`：原生 JavaScript、CSS、Canvas 交互界面。
 - `tests/test_game.py`：规则边界、终局、100 场随机模拟与 API 流程。

@@ -1,0 +1,272 @@
+{
+  "note": "Local CPU real-model integration smoke test, three games, fixed human move sequence. Not a win-rate benchmark.",
+  "rounds": 24,
+  "laya_rounds": 24,
+  "changed_ranking_rounds": 6,
+  "results": [
+    {
+      "persona": "bold",
+      "round": 1,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "guard",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.399
+    },
+    {
+      "persona": "bold",
+      "round": 2,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "guard",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.247
+    },
+    {
+      "persona": "bold",
+      "round": 3,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "provoke",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.235
+    },
+    {
+      "persona": "bold",
+      "round": 4,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "attack",
+      "enemy": "guard",
+      "rules_choice": "attack",
+      "model_changed_ranking": true,
+      "latency_seconds": 0.249
+    },
+    {
+      "persona": "bold",
+      "round": 5,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "guard",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.252
+    },
+    {
+      "persona": "bold",
+      "round": 6,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "attack",
+      "enemy": "guard",
+      "rules_choice": "guard",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.266
+    },
+    {
+      "persona": "bold",
+      "round": 7,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "provoke",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.25
+    },
+    {
+      "persona": "bold",
+      "round": 8,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "attack",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.268
+    },
+    {
+      "persona": "patient",
+      "round": 1,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "guard",
+      "enemy": "guard",
+      "rules_choice": "attack",
+      "model_changed_ranking": true,
+      "latency_seconds": 0.216
+    },
+    {
+      "persona": "patient",
+      "round": 2,
+      "source": "laya",
+      "model_plan": "conserve",
+      "actual_player": "guard",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.248
+    },
+    {
+      "persona": "patient",
+      "round": 3,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "provoke",
+      "enemy": "guard",
+      "rules_choice": "attack",
+      "model_changed_ranking": true,
+      "latency_seconds": 0.226
+    },
+    {
+      "persona": "patient",
+      "round": 4,
+      "source": "laya",
+      "model_plan": "conserve",
+      "actual_player": "attack",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.236
+    },
+    {
+      "persona": "patient",
+      "round": 5,
+      "source": "laya",
+      "model_plan": "conserve",
+      "actual_player": "guard",
+      "enemy": "guard",
+      "rules_choice": "guard",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.263
+    },
+    {
+      "persona": "patient",
+      "round": 6,
+      "source": "laya",
+      "model_plan": "conserve",
+      "actual_player": "attack",
+      "enemy": "guard",
+      "rules_choice": "attack",
+      "model_changed_ranking": true,
+      "latency_seconds": 0.244
+    },
+    {
+      "persona": "patient",
+      "round": 7,
+      "source": "laya",
+      "model_plan": "conserve",
+      "actual_player": "provoke",
+      "enemy": "guard",
+      "rules_choice": "attack",
+      "model_changed_ranking": true,
+      "latency_seconds": 0.258
+    },
+    {
+      "persona": "patient",
+      "round": 8,
+      "source": "laya",
+      "model_plan": "conserve",
+      "actual_player": "attack",
+      "enemy": "guard",
+      "rules_choice": "attack",
+      "model_changed_ranking": true,
+      "latency_seconds": 0.258
+    },
+    {
+      "persona": "reader",
+      "round": 1,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "guard",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.222
+    },
+    {
+      "persona": "reader",
+      "round": 2,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "guard",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.234
+    },
+    {
+      "persona": "reader",
+      "round": 3,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "provoke",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.231
+    },
+    {
+      "persona": "reader",
+      "round": 4,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "attack",
+      "enemy": "guard",
+      "rules_choice": "guard",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.266
+    },
+    {
+      "persona": "reader",
+      "round": 5,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "guard",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.255
+    },
+    {
+      "persona": "reader",
+      "round": 6,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "attack",
+      "enemy": "guard",
+      "rules_choice": "guard",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.25
+    },
+    {
+      "persona": "reader",
+      "round": 7,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "provoke",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.252
+    },
+    {
+      "persona": "reader",
+      "round": 8,
+      "source": "laya",
+      "model_plan": "unsettle",
+      "actual_player": "attack",
+      "enemy": "attack",
+      "rules_choice": "attack",
+      "model_changed_ranking": false,
+      "latency_seconds": 0.271
+    }
+  ]
+}
