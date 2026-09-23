@@ -1,0 +1,29 @@
+[Unit]
+Description=Qiuming cricket game with Laya AI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=qiuming
+Group=qiuming
+WorkingDirectory=/opt/qiuming/app
+Environment=HF_HOME=/var/lib/qiuming/huggingface
+Environment=LAYA_DEVICE=cpu
+Environment=LAYA_THREADS=2
+Environment=OMP_NUM_THREADS=2
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/qiuming/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 8877 --workers 1 --proxy-headers --forwarded-allow-ips 127.0.0.1
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/qiuming
+MemoryMax=2300M
+CPUQuota=180%
+TasksMax=128
+
+[Install]
+WantedBy=multi-user.target

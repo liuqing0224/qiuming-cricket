@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23a6533e'/%3E%3Ctext x='10' y='48' font-size='46' fill='%23f1eee5'%3E秋%3C/text%3E%3C/svg%3E"><meta name="theme-color" content="#eee9dc"><title>秋鸣 · 斗蟋馆</title><link rel="stylesheet" href="./style.css"></head>
+<body>
+<div class="page">
+<header><a class="brand" href="./" aria-label="秋鸣斗蟋馆首页"><span class="seal">秋<br>鸣</span><span>秋鸣<span class="brand-sub">斗 蟋 馆</span></span></a><nav aria-label="主导航"><button class="nav-active" id="arena-nav">斗虫台 <small>01</small></button><button id="collection-nav">藏虫谱 <small>02</small></button><button id="records-nav">战绩簿 <small>03</small></button></nav><button class="outline" id="guide">玩法小笺 <span>↗</span></button></header>
+<main>
+<section class="heading"><div><div class="eyebrow">一 盆 天 地 · 方 寸 江 湖</div><h1>秋声起，好戏开场。</h1><p>择一良虫，执草相邀。在一方斗盆里，赴一场秋日雅集。</p></div><div class="season"><span>白露过后</span><b>宜 · 斗蟋</b><small>秋日雅集 · 第一场</small></div></section>
+<div class="game-layout">
+<aside class="roster panel"><div class="section-title"><h2>我的虫斋</h2><span>叁品良虫</span></div><p class="aside-note">挑一位，替你上场。</p><div id="roster"></div><div class="care-note"><span>养虫札记</span><p id="breed-description"></p></div><div class="roster-foot"><span class="dot"></span> 本局满状态入盆</div></aside>
+<section class="arena panel" aria-label="斗虫台"><div class="arena-top"><span><i class="dot"></i> <span id="stage-label">候场 · 静待开盆</span></span><span id="round-label">第 〇 回合</span></div><div class="fighters"><div><small>我方 · <span id="player-type">均衡型</span></small><h2 id="player-name">青背将军</h2><div class="health"><i id="player-hp"></i></div><span id="player-hp-label">耐力 100 / 100</span></div><div class="versus">对<span>阵</span></div><div class="enemy-score"><small>馆主 · <span id="enemy-type">强攻型</span></small><h2 id="enemy-name">紫衣侯</h2><div class="health"><i id="enemy-hp"></i></div><span id="enemy-hp-label">耐力 100 / 100</span></div></div>
+<div class="bowl-scene"><canvas id="arena-canvas" aria-label="陶制斗盆中的两只蛐蛐，出招时呈现进攻与防守动画" role="img"></canvas><div class="scene-caption"><span>澄泥斗盆</span><small>秋声入耳 · 胜负随心</small></div><div class="result" id="result" hidden><span id="result-sub"></span><h2 id="result-title"></h2><p id="result-copy"></p></div></div>
+<div class="arena-bottom"><span id="scene-message" aria-live="polite">两雄入盆，须先观其势。</span><button id="sound" aria-pressed="false" title="开启虫鸣">虫鸣 · 关</button></div></section>
+<aside class="journal panel"><div class="section-title"><h2>斗虫实录</h2><span class="stamp">实录</span></div><div class="journal-intro">一招一式，皆有章法。</div><div id="log" aria-live="polite"><div class="log-entry"><small>开场之前</small><h3>秋风送来一声鸣</h3><p>斗盆已净，良虫已备。<br>选好你的爱将，即可开盆。</p></div></div><div class="journal-foot"><span id="engine-dot" class="dot"></span><span id="engine-status">Laya · 正在连接</span></div></aside>
+</div>
+<section class="control-bar"><div class="control-intro"><span class="tiny-label">执草人 · 你的回合</span><h2 id="control-title">先择良虫，再开好局。</h2><div class="resources"><span>体力 <b id="energy">80</b><i><em id="energy-bar"></em></i></span><span>斗志 <b id="spirit">50</b><i><em id="spirit-bar"></em></i></span></div></div><div class="actions"><button data-action="attack" disabled><span class="action-num">壹</span><span><b>振翅强攻</b><small>耗体力 18 · 克制挑逗</small></span><kbd>1</kbd></button><button data-action="guard" disabled><span class="action-num">贰</span><span><b>收须固守</b><small>回体力 24 · 抵御强攻</small></span><kbd>2</kbd></button><button data-action="provoke" disabled><span class="action-num">叁</span><span><b>执草挑逗</b><small>增斗志 19 · 压制固守</small></span><kbd>3</kbd></button></div><button class="start" id="start">开盆斗虫 <span>→</span></button></section>
+<div class="below"><span>小笺：强攻破挑逗，固守卸强攻，挑逗压固守。知进退，方得胜。</span><span id="record-summary">尚无战绩 · 静候首胜</span></div>
+<div class="engine-mobile" id="engine-mobile">Laya · 正在连接</div></main><footer><span>秋鸣斗蟋馆 <i>©</i> 秋日闲趣</span><span>取意传统斗蟋文化 · 虚拟虫趣，无需真虫</span><a href="https://github.com/NandhaKishorM/laya" target="_blank" rel="noreferrer">POWERED BY LAYA ↗</a></footer>
+</div>
+<dialog id="modal"><div class="modal-head"><span class="eyebrow">秋 鸣 · 斗 蟋 馆</span><button id="close-modal" aria-label="关闭弹窗">×</button></div><div id="modal-body"></div></dialog>
+<script type="module" src="./app.js"></script>
+</body></html>

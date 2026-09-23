@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.log
+.DS_Store
+vendor/
+.env
+.env.*
+*.pem
+*.key
+*.safetensors
+models/
+AGENTS.md
+docs/STATUS.md
+docs/*.png
