@@ -48,3 +48,18 @@ curl https://你的域名/qiuming/api/status
 ## 许可
 
 原创代码 MIT；Laya 源码 Apache-2.0，完整声明见 `THIRD_PARTY_NOTICES.md`。不要提交 SSH 私钥、环境凭据、虚拟环境或模型权重。
+
+### 小内存主机的加载峰值
+
+在 4 GB、无 swap 主机上，Laya 的 float32 初始化可能因同时持有模型与权重超过服务内存上限。已验证的部署使用额外 2 GB swap 缓冲加载峰值，保留 `MemoryMax=2300M`。只有在磁盘空间足够、主机允许时执行，已有 swap 可复用；不要覆盖已有文件：
+
+```sh
+fallocate -l 2G /var/lib/qiuming.swap
+chmod 600 /var/lib/qiuming.swap
+mkswap /var/lib/qiuming.swap
+swapon /var/lib/qiuming.swap
+# 需要重启后生效时，将下行追加一次到 /etc/fstab：
+# /var/lib/qiuming.swap none swap sw 0 0
+```
+
+加载后检查 `systemctl show qiuming -p NRestarts -p MemoryCurrent`，必须确认不再 OOM 重启；也必须验证真实 `decision_source: laya`，不能只看页面可访问。
